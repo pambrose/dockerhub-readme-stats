@@ -3,4 +3,5 @@ coverage/
 .env
 *.log
 .vercel
+.idea
 .DS_Store

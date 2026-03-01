@@ -36,7 +36,7 @@ function renderStatsCard(stats, options = {}) {
   const hiddenStats = hide.split(",").map((s) => s.trim().toLowerCase());
 
   const title = escapeXml(
-    custom_title || `${stats.fullName} Docker Hub Stats`
+    custom_title || `${stats.fullName} Stats`
   );
 
   const statItems = [];

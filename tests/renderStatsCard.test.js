@@ -30,18 +30,18 @@ describe("renderStatsCard", () => {
 
   test("includes title with image name", () => {
     const svg = renderStatsCard(mockStats);
-    expect(svg).toContain("library/nginx Docker Hub Stats");
+    expect(svg).toContain("library/nginx Stats");
   });
 
   test("supports custom title", () => {
     const svg = renderStatsCard(mockStats, { custom_title: "My Image" });
     expect(svg).toContain("My Image");
-    expect(svg).not.toContain("library/nginx Docker Hub Stats");
+    expect(svg).not.toContain("library/nginx Stats");
   });
 
   test("hides title when hide_title is true", () => {
     const svg = renderStatsCard(mockStats, { hide_title: true });
-    expect(svg).not.toContain("library/nginx Docker Hub Stats");
+    expect(svg).not.toContain("library/nginx Stats");
   });
 
   test("hides specific stats", () => {

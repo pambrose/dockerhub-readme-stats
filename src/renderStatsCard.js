@@ -77,7 +77,7 @@ function renderStatsCard(stats, options = {}) {
     .map((item, index) => {
       const y = titleHeight + 45 + index * lineHeight;
       return `
-      <g transform="translate(25, ${y})">
+      <g transform="translate(15, ${y})">
         <svg viewBox="0 0 24 24" width="18" height="18" color="${colors.iconColor}">
           ${item.icon}
         </svg>
@@ -94,7 +94,7 @@ function renderStatsCard(stats, options = {}) {
   const titleSection = hide_title
     ? ""
     : `
-    <g transform="translate(25, 35)">
+    <g transform="translate(15, 35)">
       <svg viewBox="0 0 128 128" width="28" height="28">
         ${DOCKER_ICON}
       </svg>

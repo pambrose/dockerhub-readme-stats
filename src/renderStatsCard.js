@@ -78,10 +78,10 @@ function renderStatsCard(stats, options = {}) {
       const y = titleHeight + 45 + index * lineHeight;
       return `
       <g transform="translate(25, ${y})">
-        <svg viewBox="0 0 24 24" width="16" height="16" color="${colors.iconColor}">
+        <svg viewBox="0 0 24 24" width="18" height="18" color="${colors.iconColor}">
           ${item.icon}
         </svg>
-        <text x="26" y="12.5" fill="${colors.textColor}" font-size="14" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif">
+        <text x="28" y="13.5" fill="${colors.textColor}" font-size="14" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif">
           ${escapeXml(item.label)}:
         </text>
         <text x="${width - 55}" y="12.5" fill="${colors.textColor}" font-size="14" font-weight="bold" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif" text-anchor="end">

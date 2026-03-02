@@ -95,10 +95,10 @@ function renderStatsCard(stats, options = {}) {
     ? ""
     : `
     <g transform="translate(25, 35)">
-      <svg viewBox="0 0 28 24" width="14" height="14" color="${colors.iconColor}">
+      <svg viewBox="0 0 28 24" width="18" height="18" color="${colors.iconColor}">
         ${DOCKER_ICON}
       </svg>
-      <text x="20" y="13" fill="${colors.titleColor}" font-size="16" font-weight="600" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif">
+      <text x="24" y="14" fill="${colors.titleColor}" font-size="16" font-weight="600" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif">
         ${title}
       </text>
     </g>`;

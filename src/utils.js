@@ -35,4 +35,9 @@ function formatDate(isoString) {
   });
 }
 
-module.exports = { formatNumber, escapeXml, parseBoolean, formatDate };
+function normalizeColor(override, fallback) {
+  const raw = override || fallback;
+  return raw.startsWith("#") ? raw : `#${raw}`;
+}
+
+module.exports = { formatNumber, escapeXml, parseBoolean, formatDate, normalizeColor };

@@ -26,12 +26,17 @@ function renderStatsCard(stats, options = {}) {
 
   const theme = themes[themeName] || themes.default;
 
+  const normalizeColor = (override, fallback) => {
+    const raw = override || fallback;
+    return raw.startsWith("#") ? raw : `#${raw}`;
+  };
+
   const colors = {
-    titleColor: `#${title_color || theme.titleColor.replace("#", "")}`,
-    textColor: `#${text_color || theme.textColor.replace("#", "")}`,
-    iconColor: `#${icon_color || theme.iconColor.replace("#", "")}`,
-    bgColor: `#${bg_color || theme.bgColor.replace("#", "")}`,
-    borderColor: `#${border_color || theme.borderColor.replace("#", "")}`,
+    titleColor: normalizeColor(title_color, theme.titleColor),
+    textColor: normalizeColor(text_color, theme.textColor),
+    iconColor: normalizeColor(icon_color, theme.iconColor),
+    bgColor: normalizeColor(bg_color, theme.bgColor),
+    borderColor: normalizeColor(border_color, theme.borderColor),
   };
 
   const hiddenStats = hide.split(",").map((s) => s.trim().toLowerCase());
@@ -109,10 +114,6 @@ function renderStatsCard(stats, options = {}) {
 
   return `
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none">
-  <style>
-    .header { font: 600 16px 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; fill: ${colors.titleColor}; animation: fadeInAnimation 0.8s ease-in-out forwards; }
-    @keyframes fadeInAnimation { from { opacity: 0; } to { opacity: 1; } }
-  </style>
   <rect x="0.5" y="0.5" rx="${border_radius}" height="99%" width="99%" fill="${colors.bgColor}" ${borderStyle}/>
   ${titleSection}
   ${statsContent}

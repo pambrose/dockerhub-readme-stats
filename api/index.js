@@ -1,6 +1,6 @@
 const { fetchStats } = require("../src/fetchStats");
 const { renderStatsCard } = require("../src/renderStatsCard");
-const { parseBoolean } = require("../src/utils");
+const { parseBoolean, escapeXml } = require("../src/utils");
 
 module.exports = async (req, res) => {
   const {
@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" fill="none">
   <rect x="0.5" y="0.5" rx="4.5" height="99%" width="99%" fill="#fffbeb" stroke="#f59e0b" stroke-width="1"/>
   <text x="200" y="45" fill="#92400e" font-size="14" font-weight="600" font-family="'Segoe UI', sans-serif" text-anchor="middle">Error fetching Docker Hub stats</text>
-  <text x="200" y="75" fill="#92400e" font-size="12" font-family="'Segoe UI', sans-serif" text-anchor="middle">${error.message.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text>
+  <text x="200" y="75" fill="#92400e" font-size="12" font-family="'Segoe UI', sans-serif" text-anchor="middle">${escapeXml(error.message)}</text>
 </svg>`.trim();
 
     return res.send(errorSvg);

@@ -1,5 +1,6 @@
 const { fetchStats } = require("../src/fetchStats");
 const { renderBadge } = require("../src/renderBadge");
+const { escapeXml } = require("../src/utils");
 
 module.exports = async (req, res) => {
   const {
@@ -48,7 +49,7 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Type", "image/svg+xml");
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     return res.send(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><text x="5" y="14" font-size="11" font-family="Verdana">Error: ${error.message.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text></svg>`
+      `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><text x="5" y="14" font-size="11" font-family="Verdana">Error: ${escapeXml(error.message)}</text></svg>`
     );
   }
 };

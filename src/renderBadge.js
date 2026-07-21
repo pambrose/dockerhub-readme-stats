@@ -1,12 +1,10 @@
-const { formatNumber, escapeXml } = require("./utils");
+const { formatNumber, escapeXml, normalizeColor } = require("./utils");
 
 function renderBadge(stats, options = {}) {
-  const {
-    label = "Docker Pulls",
-    color = "#066da5",
-    label_color = "#555555",
-    style = "flat",
-  } = options;
+  const { label = "Docker Pulls", color, label_color, style = "flat" } = options;
+
+  const valueColor = normalizeColor(color, "#066da5");
+  const labelColor = normalizeColor(label_color, "#555555");
 
   const value = formatNumber(stats.pullCount);
   const labelText = escapeXml(label);
@@ -16,10 +14,10 @@ function renderBadge(stats, options = {}) {
   const totalWidth = labelWidth + valueWidth;
 
   if (style === "for-the-badge") {
-    return renderForTheBadge(labelText, value, labelWidth, valueWidth, totalWidth, label_color, color);
+    return renderForTheBadge(labelText, value, labelWidth, valueWidth, totalWidth, labelColor, valueColor);
   }
 
-  return renderFlat(labelText, value, labelWidth, valueWidth, totalWidth, label_color, color);
+  return renderFlat(labelText, value, labelWidth, valueWidth, totalWidth, labelColor, valueColor);
 }
 
 function measureText(text) {

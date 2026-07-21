@@ -28,6 +28,34 @@ describe("renderStatsCard", () => {
     expect(svg).toContain("Latest Release");
   });
 
+  test("puts the version in the label when one was found", () => {
+    const svg = renderStatsCard({ ...mockStats, version: "1.31.3" });
+    expect(svg).toContain("1.31.3 Released");
+    expect(svg).not.toContain("Latest Release");
+  });
+
+  test("falls back to Latest Release when no version was found", () => {
+    expect(renderStatsCard({ ...mockStats, version: null })).toContain(
+      "Latest Release"
+    );
+    expect(renderStatsCard(mockStats)).toContain("Latest Release");
+  });
+
+  test("still shows the date alongside the version", () => {
+    const svg = renderStatsCard({ ...mockStats, version: "1.31.3" });
+    expect(svg).toContain("1.31.3 Released");
+    expect(svg).toContain("Jan 15, 2024");
+  });
+
+  test("hide=updated removes the row regardless of version", () => {
+    const svg = renderStatsCard(
+      { ...mockStats, version: "1.31.3" },
+      { hide: "updated" }
+    );
+    expect(svg).not.toContain("1.31.3 Released");
+    expect(svg).not.toContain("Latest Release");
+  });
+
   test("includes title with image name", () => {
     const svg = renderStatsCard(mockStats);
     expect(svg).toContain("library/nginx Stats");

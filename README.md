@@ -4,7 +4,7 @@ Dynamically generated Docker Hub stats for your GitHub READMEs — inspired by [
 
 ## Features
 
-- Docker Hub image stats card (pulls, stars, latest release)
+- Docker Hub image stats card (pulls, stars, latest release version and date)
 - Simple pull/star count badges
 - 11 built-in themes
 - Fully customizable colors
@@ -64,6 +64,12 @@ Hide stars and latest release:
 ```
 
 Official images can use the short name (e.g., `nginx` instead of `library/nginx`).
+
+#### Release row
+
+The third row shows the version tag that `:latest` currently points to, alongside the date it was pushed — for example `1.31.3 Released — Jul 20, 2026`.
+
+The version is resolved by finding the version tags that share a digest with `:latest`, so it reflects what users actually get when they pull the image. Repos with no `:latest` tag, or none tagged with a version, fall back to a plain `Latest Release` label with the date. Prerelease tags (`19beta2`, `2.0.0-rc1`) are never shown.
 
 ---
 

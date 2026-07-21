@@ -61,7 +61,9 @@ function renderStatsCard(stats, options = {}) {
   if (!hiddenStats.includes("updated")) {
     statItems.push({
       icon: CLOCK_ICON,
-      label: "Latest Release",
+      // Falls back when the version lookup found nothing (repos with no
+      // :latest tag, or none tagged with a version)
+      label: stats.version ? `${stats.version} Released` : "Latest Release",
       value: formatDate(stats.lastUpdated),
     });
   }

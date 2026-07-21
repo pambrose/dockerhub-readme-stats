@@ -68,3 +68,5 @@ Jest with no config file (defaults). `tests/*.test.js` mirrors `src/*.js` one-to
 ## Docs to keep in sync
 
 Query parameters are documented in three places: the tables in `README.md`, the example URLs in `LOCAL_DEVELOPMENT.md`, and the destructuring in the relevant `api/*.js` handler. Adding or renaming a parameter means updating all three.
+
+The supported Node version likewise lives in three places: `engines.node` in `package.json`, the matrix in `.github/workflows/test.yml`, and the prerequisites in `LOCAL_DEVELOPMENT.md`. `engines` should claim only what CI actually exercises — don't widen it to a version the matrix never runs.

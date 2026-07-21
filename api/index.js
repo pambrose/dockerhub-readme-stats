@@ -1,4 +1,4 @@
-const { fetchStats } = require("../src/fetchStats");
+const { fetchStats, fetchLatestVersion } = require("../src/fetchStats");
 const { renderStatsCard } = require("../src/renderStatsCard");
 const { parseBoolean, escapeXml } = require("../src/utils");
 
@@ -28,7 +28,13 @@ module.exports = async (req, res) => {
         .send("Missing required query parameter: ?image=namespace/repository");
     }
 
-    const stats = await fetchStats(image);
+    // Issued together so the version lookup costs no extra latency.
+    // fetchLatestVersion resolves to null on failure rather than rejecting,
+    // so a tags-API problem degrades the label instead of failing the card.
+    const [stats, version] = await Promise.all([
+      fetchStats(image),
+      fetchLatestVersion(image),
+    ]);
 
     const cacheSeconds = Math.max(
       1800,
@@ -38,7 +44,7 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Type", "image/svg+xml");
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
-    const svg = renderStatsCard(stats, {
+    const svg = renderStatsCard({ ...stats, version }, {
       theme,
       title_color,
       text_color,

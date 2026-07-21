@@ -61,7 +61,7 @@ function renderStatsCard(stats, options = {}) {
   if (!hiddenStats.includes("updated")) {
     statItems.push({
       icon: CLOCK_ICON,
-      label: "Last Updated",
+      label: "Latest Release",
       value: formatDate(stats.lastUpdated),
     });
   }

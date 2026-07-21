@@ -4,7 +4,7 @@ Dynamically generated Docker Hub stats for your GitHub READMEs — inspired by [
 
 ## Features
 
-- Docker Hub image stats card (pulls, stars, last updated)
+- Docker Hub image stats card (pulls, stars, latest release)
 - Simple pull/star count badges
 - 11 built-in themes
 - Fully customizable colors
@@ -35,7 +35,7 @@ Add this to your README:
 | `border_color` | Border color (hex) | theme default |
 | `hide_border` | Hide the card border | `false` |
 | `hide_title` | Hide the card title | `false` |
-| `hide` | Comma-separated stats to hide: `pulls`, `stars`, `updated` | — |
+| `hide` | Comma-separated stats to hide: `pulls`, `stars`, `updated` (hides the Latest Release row) | — |
 | `custom_title` | Custom card title | — |
 | `border_radius` | Card corner radius | `4.5` |
 | `width` | Card width in pixels | `400` |
@@ -58,7 +58,7 @@ Custom colors:
 ![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx&title_color=ff6e96&bg_color=282a36&text_color=f8f8f2&icon_color=bd93f9)
 ```
 
-Hide stars and last updated:
+Hide stars and latest release:
 ```md
 ![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx&hide=stars,updated)
 ```

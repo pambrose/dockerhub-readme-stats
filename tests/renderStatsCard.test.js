@@ -25,7 +25,7 @@ describe("renderStatsCard", () => {
     expect(svg).toContain("1B");
     expect(svg).toContain("Stars");
     expect(svg).toContain("1.5K");
-    expect(svg).toContain("Last Updated");
+    expect(svg).toContain("Latest Release");
   });
 
   test("includes title with image name", () => {
@@ -48,7 +48,7 @@ describe("renderStatsCard", () => {
     const svg = renderStatsCard(mockStats, { hide: "stars,updated" });
     expect(svg).toContain("Total Pulls");
     expect(svg).not.toContain(">Stars<");
-    expect(svg).not.toContain("Last Updated");
+    expect(svg).not.toContain("Latest Release");
   });
 
   test("applies theme colors", () => {

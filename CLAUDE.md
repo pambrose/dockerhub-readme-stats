@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Vercel serverless service that renders SVG cards and badges of Docker Hub image stats (pulls, stars, last updated) for embedding in GitHub READMEs. CommonJS, no build step, no TypeScript, no environment variables — the Docker Hub API is public.
+Vercel serverless service that renders SVG cards and badges of Docker Hub image stats (pulls, stars, latest release) for embedding in GitHub READMEs. CommonJS, no build step, no TypeScript, no environment variables — the Docker Hub API is public.
 
 ## Git workflow
 
@@ -57,6 +57,7 @@ Every user-controlled string interpolated into SVG output must pass through `esc
 - **`cache_seconds` is clamped to 1800–86400** in both handlers. Keep the clamp if you add a third.
 - **Short image names auto-prefix `library/`** in `fetchStats` (`nginx` → `library/nginx`), so official images work without a namespace.
 - **`api/badge.js` remaps `starCount` into the `pullCount` field** when `type=stars`, so `renderBadge` only ever reads one value field. Not a bug — don't "fix" it by teaching the renderer about star counts.
+- **The `hide=updated` key intentionally does not match its "Latest Release" label.** The key is public API baked into card URLs already in people's READMEs, so it stays `updated` even though the row was relabeled. Same for the `lastUpdated` / `last_updated` field names, which mirror Docker Hub's API. Don't align them.
 - **Stats card height is computed**, not fixed: `header + title + (visible stat rows × 30) + padding`. Adding a stat row type means adding to `statItems` and to the `hide` filter list; the height follows automatically.
 - **Themes** (`src/themes.js`) are flat objects of five keys: `titleColor`, `textColor`, `iconColor`, `bgColor`, `borderColor`. A new theme is one entry; unknown theme names silently fall back to `default`.
 - **Badge text width is approximated** by `measureText` (`chars × 6.8 + 10`) since SVG can't measure fonts server-side. Layout math in `renderBadge` depends on this estimate.

@@ -18,7 +18,7 @@ Dynamically generated Docker Hub stats for your GitHub READMEs — inspired by [
 Add this to your README:
 
 ```md
-![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx)
+![Docker Hub Stats](https://dockerhub-readme-stats.vercel.app/api?image=library/nginx)
 ```
 
 #### Query Parameters
@@ -45,22 +45,22 @@ Add this to your README:
 
 Default theme:
 ```md
-![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx)
+![Docker Hub Stats](https://dockerhub-readme-stats.vercel.app/api?image=library/nginx)
 ```
 
 Dark theme:
 ```md
-![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx&theme=dark)
+![Docker Hub Stats](https://dockerhub-readme-stats.vercel.app/api?image=library/nginx&theme=dark)
 ```
 
 Custom colors:
 ```md
-![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx&title_color=ff6e96&bg_color=282a36&text_color=f8f8f2&icon_color=bd93f9)
+![Docker Hub Stats](https://dockerhub-readme-stats.vercel.app/api?image=library/nginx&title_color=ff6e96&bg_color=282a36&text_color=f8f8f2&icon_color=bd93f9)
 ```
 
 Hide stars and latest release:
 ```md
-![Docker Hub Stats](https://your-deployment.vercel.app/api?image=library/nginx&hide=stars,updated)
+![Docker Hub Stats](https://dockerhub-readme-stats.vercel.app/api?image=library/nginx&hide=stars,updated)
 ```
 
 Official images can use the short name (e.g., `nginx` instead of `library/nginx`).
@@ -78,7 +78,7 @@ The version is resolved by finding the version tags that share a digest with `:l
 For a simpler badge (like shields.io style):
 
 ```md
-![Docker Pulls](https://your-deployment.vercel.app/api/badge?image=library/nginx)
+![Docker Pulls](https://dockerhub-readme-stats.vercel.app/api/badge?image=library/nginx)
 ```
 
 #### Badge Query Parameters
@@ -122,7 +122,9 @@ For a simpler badge (like shields.io style):
 3. Import your forked repository
 4. Deploy — no environment variables needed (Docker Hub API is public)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/dockerhub-readme-stats)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/pambrose/dockerhub-readme-stats)
+
+Once deployed, swap `dockerhub-readme-stats.vercel.app` in the examples above for your own deployment's host. The examples point at this project's instance so the cards render here, but pointing your README at someone else's deployment means your badges break whenever theirs does.
 
 ---
 

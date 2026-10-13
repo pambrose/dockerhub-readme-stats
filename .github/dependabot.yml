@@ -1,0 +1,29 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Wait a week before proposing a release, so a compromised or broken
+    # version has time to be caught and yanked. Matches the min-release-age
+    # npm enforces locally, so a Dependabot PR never asks for a version
+    # `npm install` would refuse. Security updates skip the cooldown.
+    cooldown:
+      default-days: 7
+    # Majors stay as individual PRs since they can break the build
+    # (e.g. the Jest 29 -> 30 jump); everything else lands together.
+    groups:
+      npm-minor-and-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ["*"]

@@ -1,14 +1,14 @@
 function formatNumber(num) {
-  if (num >= 1_000_000_000) {
-    return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
+  if (num < 1_000) return String(num);
+  const units = ["K", "M", "B"];
+  let unit = 0;
+  let value = num / 1_000;
+  // Choose the unit after rounding, so 999,999 becomes "1M", not "1000K"
+  while (unit < units.length - 1 && Number(value.toFixed(1)) >= 1_000) {
+    value /= 1_000;
+    unit++;
   }
-  if (num >= 1_000_000) {
-    return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
-  }
-  if (num >= 1_000) {
-    return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "K";
-  }
-  return String(num);
+  return value.toFixed(1).replace(/\.0$/, "") + units[unit];
 }
 
 function escapeXml(str) {

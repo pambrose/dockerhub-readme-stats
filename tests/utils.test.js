@@ -11,7 +11,13 @@ describe("formatNumber", () => {
     expect(formatNumber(1000)).toBe("1K");
     expect(formatNumber(1500)).toBe("1.5K");
     expect(formatNumber(10000)).toBe("10K");
-    expect(formatNumber(999999)).toBe("1000K");
+    expect(formatNumber(999949)).toBe("999.9K");
+  });
+
+  test("moves to the next unit when rounding reaches 1000", () => {
+    expect(formatNumber(999999)).toBe("1M");
+    expect(formatNumber(999949999)).toBe("999.9M");
+    expect(formatNumber(999999999)).toBe("1B");
   });
 
   test("formats millions", () => {

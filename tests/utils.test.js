@@ -1,4 +1,4 @@
-const { formatNumber, escapeXml, parseBoolean, formatDate } = require("../src/utils");
+const { formatNumber, formatCount, escapeXml, parseBoolean, formatDate } = require("../src/utils");
 
 describe("formatNumber", () => {
   test("formats numbers below 1000", () => {
@@ -11,7 +11,13 @@ describe("formatNumber", () => {
     expect(formatNumber(1000)).toBe("1K");
     expect(formatNumber(1500)).toBe("1.5K");
     expect(formatNumber(10000)).toBe("10K");
-    expect(formatNumber(999999)).toBe("1000K");
+    expect(formatNumber(999949)).toBe("999.9K");
+  });
+
+  test("moves to the next unit when rounding reaches 1000", () => {
+    expect(formatNumber(999999)).toBe("1M");
+    expect(formatNumber(999949999)).toBe("999.9M");
+    expect(formatNumber(999999999)).toBe("1B");
   });
 
   test("formats millions", () => {
@@ -23,6 +29,20 @@ describe("formatNumber", () => {
   test("formats billions", () => {
     expect(formatNumber(1000000000)).toBe("1B");
     expect(formatNumber(5500000000)).toBe("5.5B");
+  });
+});
+
+describe("formatCount", () => {
+  test("leaves numbers below 1000 unchanged", () => {
+    expect(formatCount(0)).toBe("0");
+    expect(formatCount(1)).toBe("1");
+    expect(formatCount(999)).toBe("999");
+  });
+
+  test("groups thousands with commas", () => {
+    expect(formatCount(1000)).toBe("1,000");
+    expect(formatCount(1006986)).toBe("1,006,986");
+    expect(formatCount(13512345678)).toBe("13,512,345,678");
   });
 });
 

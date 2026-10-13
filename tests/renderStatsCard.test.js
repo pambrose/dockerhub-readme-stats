@@ -22,10 +22,16 @@ describe("renderStatsCard", () => {
   test("includes stats in the SVG", () => {
     const svg = renderStatsCard(mockStats);
     expect(svg).toContain("Total Pulls");
-    expect(svg).toContain("1B");
+    expect(svg).toContain("1,000,000,000");
     expect(svg).toContain("Stars");
-    expect(svg).toContain("1.5K");
+    expect(svg).toContain("1,500");
     expect(svg).toContain("Latest Release");
+  });
+
+  test("shows exact counts rather than abbreviating them", () => {
+    const svg = renderStatsCard({ ...mockStats, pullCount: 1006986, starCount: 1 });
+    expect(svg).toContain("1,006,986");
+    expect(svg).not.toContain("1M");
   });
 
   test("puts the version in the label when one was found", () => {

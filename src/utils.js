@@ -11,6 +11,12 @@ function formatNumber(num) {
   return value.toFixed(1).replace(/\.0$/, "") + units[unit];
 }
 
+// Exact count with thousands separators, for the card, which has room
+// for it. Badges stay abbreviated via formatNumber.
+function formatCount(num) {
+  return num.toLocaleString("en-US");
+}
+
 function escapeXml(str) {
   if (typeof str !== "string") return str;
   return str
@@ -40,4 +46,4 @@ function normalizeColor(override, fallback) {
   return raw.startsWith("#") ? raw : `#${raw}`;
 }
 
-module.exports = { formatNumber, escapeXml, parseBoolean, formatDate, normalizeColor };
+module.exports = { formatNumber, formatCount, escapeXml, parseBoolean, formatDate, normalizeColor };
